@@ -24,5 +24,5 @@ mongoose.connect(MongoDB_Key).then(()=>{
 
 
 app.listen(port,'0.0.0.0', ()=>{
-    console.log("server started");
+    console.log("server started on "+port);
 });

@@ -1,15 +1,30 @@
 import 'package:amazon_clone/constants/global_variables.dart';
 import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
-import 'package:amazon_clone/routes.dart';
+import 'package:amazon_clone/providers/user_provider.dart';
+import 'package:amazon_clone/router.dart';
+import 'package:amazon_clone/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -17,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Amazon Clone',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme:const ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: GlobalVariables.secondaryColor,
         ),
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
@@ -30,7 +45,11 @@ class MyApp extends StatelessWidget {
         // useMaterial3: true,
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home:const AuthScreen(),
+      home: const WelcomeScreen(),
+      routes: {
+        WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+        AuthScreen.routeName: (context) => const AuthScreen(),
+      },
     );
   }
 }

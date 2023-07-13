@@ -1,5 +1,7 @@
+require('dotenv').config();
 const express = require('express');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 const authRouter = express.Router(); //express() is initialization which we have to listen on port which is done in index.js file. Router() is used to create differentiable routes
@@ -18,13 +20,40 @@ authRouter.post('/api/signup', async (req, res) => {
             return res.status(400).json({ msg: "Password is too short!" });
         }
 
-        const encryptedPassword =await bcrypt.hash(password,8); //8 is salt added to hashing to encrypt, (not a length)
+        const encryptedPassword =await bcryptjs.hash(password,8); //8 is salt added to hashing to encrypt, (not a length)
 
         let user = new User({ name, email, password:encryptedPassword });
         user = await user.save();
-        res.send(user);
+        res.json(user);
     } catch (e) {
-        res.status(500).send({ error: e.message });
+        res.status(500).json({ error: e.message });
+    }
+});
+ 
+//SignIn Route
+authRouter.post('/api/signin', async (req, res)=>{
+    try{
+        const {email, password} = req.body;
+        
+        const user = await User.findOne({ email });
+        if(!user){
+            return res.status(400).json({msg: 'User with this mail doesn\'t exits'});
+        }
+
+        //match current password with hashed password in mongo using bcryptjs compare func: return true if matched
+        const isMatch = await bcryptjs.compare(password, user.password);
+        if(!isMatch){
+            return res.status(400).json({msg: 'password didn\'t matched'});
+        }
+
+        //creating token for user to say this is valid user not hacker or someone else
+        //we need userid to sign with and secretkey to generate token , this key is used to verify user
+        const token = jwt.sign({id: user._id}, process.env.jwtSecret_KEY);
+
+        //what to send : token will be stored in memory of user, and user is needed to send to show homepage and all other related stuffs
+        res.json({token, ...user._doc}); //...user is object destructuring ._doc give exact info of user : check diffrence in postman user has so much unneccessary infor while user._doc has needed info
+    } catch(e){
+        res.status(500).json({error: e.message});
     }
 });
 
