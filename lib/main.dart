@@ -1,10 +1,12 @@
-import 'package:amazon_clone/constants/global_variables.dart';
-import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
-import 'package:amazon_clone/providers/user_provider.dart';
-import 'package:amazon_clone/router.dart';
-import 'package:amazon_clone/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/providers/user_provider.dart';
+import 'package:jugaad_junction/router.dart';
+import 'package:jugaad_junction/screens/home_screen.dart';
+import 'package:jugaad_junction/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'constants/global_variables.dart';
+import 'features/auth/services/auth_service.dart';
 
 void main() {
   runApp(
@@ -26,10 +28,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+
+  AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    authService.getUserData(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Amazon Clone',
+      title: 'Jugaad Junction',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
@@ -42,14 +53,12 @@ class _MyAppState extends State<MyApp> {
             color: Colors.black,
           ),
         ),
-        // useMaterial3: true,
+        useMaterial3: true,
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const WelcomeScreen(),
-      routes: {
-        WelcomeScreen.routeName: (context) => const WelcomeScreen(),
-        AuthScreen.routeName: (context) => const AuthScreen(),
-      },
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const HomeScreen()
+          : const WelcomeScreen(),
     );
   }
 }

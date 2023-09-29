@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/global_variables.dart';
+
 class CustomButton extends StatelessWidget {
   const CustomButton({required this.text, required this.onTap, super.key});
   final String text;
@@ -11,6 +13,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 50),
+        backgroundColor: GlobalVariables.secondaryColor,
       ),
       child: Text(
         text,

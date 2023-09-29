@@ -1,6 +1,8 @@
-import 'package:amazon_clone/features/auth/screens/auth_screen.dart';
-import 'package:amazon_clone/screens/home_screen.dart';
+
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/screens/home_screen.dart';
+
+import 'features/auth/screens/auth_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {

@@ -1,4 +1,4 @@
-# amazon_clone
+# Jugaad Junction
 
 A new Flutter project.
 

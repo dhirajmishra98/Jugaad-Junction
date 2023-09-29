@@ -1,8 +1,10 @@
-import 'package:amazon_clone/constants/global_variables.dart';
-import 'package:amazon_clone/features/auth/services/auth_service.dart';
-import 'package:amazon_clone/widgets/custom_button.dart';
-import 'package:amazon_clone/widgets/custom_textfield.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../constants/global_variables.dart';
+import '../../../widgets/custom_button.dart';
+import '../../../widgets/custom_textfield.dart';
+import '../services/auth_service.dart';
 
 enum Auth {
   signUp,

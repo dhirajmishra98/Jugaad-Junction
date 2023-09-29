@@ -1,4 +1,4 @@
-package com.example.amazon_clone
+package com.example.jugaad_junction
 
 import io.flutter.embedding.android.FlutterActivity
 
