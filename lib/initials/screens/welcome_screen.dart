@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../features/auth/screens/auth_screen.dart';
+import '../../features/auth/screens/auth_screen.dart';
 import '../widgets/custom_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -34,21 +34,6 @@ class WelcomeScreen extends StatelessWidget {
                   fontSize: 25,
                 ),
               ),
-              // Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Container(
-              //     padding:
-              //         const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-              //     child: const Text(
-              //       'Search, rate and buy products\n\nView details of purchase\n\nPayment to Gpay/Applepay',
-              //       softWrap: true,
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         // fontWeight: FontWeight.w500,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Lottie.asset(
                 'assets/animations/welcome.json',
                 animate: true,

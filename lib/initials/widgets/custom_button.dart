@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/global_variables.dart';
+import '../../constants/global_variables.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({required this.text, required this.onTap, super.key});

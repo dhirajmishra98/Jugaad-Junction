@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/features/admin/screens/admin_screen.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:jugaad_junction/router.dart';
-import 'package:jugaad_junction/screens/home_screen.dart';
-import 'package:jugaad_junction/screens/welcome_screen.dart';
+import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
+import 'package:jugaad_junction/initials/widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 
 import 'constants/global_variables.dart';
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
           primary: GlobalVariables.secondaryColor,
+          brightness: Brightness.light,
         ),
         scaffoldBackgroundColor: GlobalVariables.backgroundColor,
         appBarTheme: const AppBarTheme(
@@ -57,7 +59,9 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? const HomeScreen()
+          ? Provider.of<UserProvider>(context).user.type == 'admin'
+              ? const AdminScreen()
+              : const BottomNavBar()
           : const WelcomeScreen(),
     );
   }

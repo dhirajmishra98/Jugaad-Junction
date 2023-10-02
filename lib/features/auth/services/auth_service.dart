@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jugaad_junction/initials/widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +13,6 @@ import '../../../constants/global_variables.dart';
 import '../../../constants/utils.dart';
 import '../../../models/user.dart';
 import '../../../providers/user_provider.dart';
-import '../../../screens/home_screen.dart';
 
 class AuthService {
   //sign up service
@@ -83,7 +84,7 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            HomeScreen.routeName,
+            BottomNavBar.routeName,
             (route) => false,
           );
         },
@@ -103,7 +104,7 @@ class AuthService {
         prefs.setString('x-auth-token', '');
       }
 
-      var tokenRes = await http.post(
+      http.Response tokenRes = await http.post(
         Uri.parse('$uriFromGlobalVar/isValidToken'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -126,6 +127,31 @@ class AuthService {
       }
     } catch (error) {
       showSnackBar(context, error.toString());
+    }
+  }
+
+//TODO: Implement properly
+  void uploadAvatar(BuildContext context, File image) async {
+    try {
+      http.Response res = await http.post(
+        Uri.parse("$uriFromGlobalVar/api/users/avatar"),
+        body: jsonEncode({
+          'avatar': image,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () async {
+          // debugPrint("on success" + res.body);
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
     }
   }
 }

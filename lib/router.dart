@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/screens/home_screen.dart';
+import 'package:jugaad_junction/features/admin/screens/admin_screen.dart';
+import 'package:jugaad_junction/features/home/screens/home_screen.dart';
+import 'package:jugaad_junction/initials/widgets/bottom_nav_bar.dart';
 
 import 'features/auth/screens/auth_screen.dart';
 
@@ -9,13 +11,24 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case AuthScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) =>const AuthScreen(),
+        builder: (_) => const AuthScreen(),
       );
 
     case HomeScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,
-        builder: (_) =>const HomeScreen(),
+        builder: (_) => const HomeScreen(),
+      );
+
+    case BottomNavBar.routeName:
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (context) => const BottomNavBar(),
+      );
+
+    case AdminScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) =>const AdminScreen(),
       );
 
     default:
