@@ -38,9 +38,9 @@ dependencies:
   remixicon: ^1.0.0
   http: ^1.1.0
   provider: ^6.0.5
-  shared_preferences: ^2.2.0
   rename: ^3.0.0
   lottie: ^2.6.0
+  shared_preferences: ^2.2.1
 
 
 dev_dependencies:

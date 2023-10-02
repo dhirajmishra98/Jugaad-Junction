@@ -65,7 +65,7 @@ authRouter.post('/isValidToken',async (req, res)=>{
         //if token is null ?
         if(!token) return res.json(false);
 
-        const verified = jwt.verify(token, jwtSecret_KEY);
+        const verified = jwt.verify(token, process.env.jwtSecret_KEY);
         //if token is not valid from jwt verification
         if(!verified) return res.json(false);
 
@@ -73,7 +73,7 @@ authRouter.post('/isValidToken',async (req, res)=>{
         const user = await User.findById(verified.id); //jwt has stored with id, so token is valid, get its id
         if(!user) return res.json(false);
 
-        res.send(user);
+        return res.send(true);
     }catch(err){
         res.status(500).json({error: err.message});
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-String uriFromGlobalVar = 'http://10.6.51.201:3000'; //Wireless LAN adapter Wi-Fi: ipv4 address from laptop machine
+String uriFromGlobalVar = 'http://192.168.34.234:3000'; //Wireless LAN adapter Wi-Fi: ipv4 address from laptop machine
 
 class GlobalVariables {
   // COLORS

@@ -103,7 +103,7 @@ class AuthService {
         prefs.setString('x-auth-token', '');
       }
 
-      http.Response tokenRes = await http.post(
+      var tokenRes = await http.post(
         Uri.parse('$uriFromGlobalVar/isValidToken'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
