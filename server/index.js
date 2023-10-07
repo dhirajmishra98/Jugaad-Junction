@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 //Imports from other files
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
 
 //Init
 const app = express(); //initializing express - it is done only once in app
@@ -14,6 +15,7 @@ const MongoDB_Key = process.env.MongoDB_KEY;
 //Middlewares
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 //Connections
 mongoose.connect(MongoDB_Key).then(()=>{

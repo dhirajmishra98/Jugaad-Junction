@@ -1,10 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:jugaad_junction/initials/widgets/bottom_nav_bar.dart';
+import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,8 +49,7 @@ class AuthService {
         },
       );
     } catch (e) {
-      debugPrint(e.toString());
-      showSnackBar(context, "sokcet problem$e");
+      showSnackBar(context, "sokcet problem $e");
     }
   }
 
@@ -73,7 +71,6 @@ class AuthService {
         },
       );
 
-      debugPrint(res.body);
 
       httpErrorHandle(
         response: res,
@@ -84,7 +81,7 @@ class AuthService {
           await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
           Navigator.pushNamedAndRemoveUntil(
             context,
-            BottomNavBar.routeName,
+            UserBottomNavBar.routeName,
             (route) => false,
           );
         },
@@ -127,31 +124,6 @@ class AuthService {
       }
     } catch (error) {
       showSnackBar(context, error.toString());
-    }
-  }
-
-//TODO: Implement properly
-  void uploadAvatar(BuildContext context, File image) async {
-    try {
-      http.Response res = await http.post(
-        Uri.parse("$uriFromGlobalVar/api/users/avatar"),
-        body: jsonEncode({
-          'avatar': image,
-        }),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      );
-
-      httpErrorHandle(
-        response: res,
-        context: context,
-        onSuccess: () async {
-          // debugPrint("on success" + res.body);
-        },
-      );
-    } catch (e) {
-      showSnackBar(context, e.toString());
     }
   }
 }

@@ -4,15 +4,15 @@ import 'package:jugaad_junction/constants/global_variables.dart';
 import 'package:jugaad_junction/features/account/screens/account_screen.dart';
 import 'package:jugaad_junction/features/home/screens/home_screen.dart';
 
-class BottomNavBar extends StatefulWidget {
-  static const String routeName = '/main-wrapping-screen';
-  const BottomNavBar({super.key});
+class UserBottomNavBar extends StatefulWidget {
+  static const String routeName = '/user-wrapping-screen';
+  const UserBottomNavBar({super.key});
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  State<UserBottomNavBar> createState() => _BottomNavBarState();
 }
 
-class _BottomNavBarState extends State<BottomNavBar> {
+class _BottomNavBarState extends State<UserBottomNavBar> {
   int _page = 0;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   List<Widget> pages = [
@@ -28,7 +28,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         buttonBackgroundColor: GlobalVariables.secondaryColor,
-        backgroundColor: GlobalVariables.backgroundColor,
+        backgroundColor: Colors.transparent,
         height: 60,
         color: GlobalVariables.secondaryColor,
         key: _bottomNavigationKey,
@@ -52,23 +52,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
-
-// Container(
-//         color: GlobalVariables.backgroundColor,
-//         child: Center(
-//           child: Column(
-//             children: <Widget>[
-//               Text(_page.toString(), textScaleFactor: 10.0),
-//               ElevatedButton(
-//                 child: Text('Go To Page of index 1'),
-//                 onPressed: () {
-//                   //Page change using state does the same as clicking index 1 navigation button
-//                   final CurvedNavigationBarState? navBarState =
-//                       _bottomNavigationKey.currentState;
-//                   navBarState?.setPage(1);
-//                 },
-//               )
-//             ],
-//           ),
-//         ),
-//       ),

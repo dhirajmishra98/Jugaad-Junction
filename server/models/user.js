@@ -23,7 +23,8 @@ const userSchema = mongoose.Schema({
         type: String,
         validate : {
             validator : (val)=>{
-                return val.length >= 6;
+                // return val.length >= 6;
+                return typeof val === 'string' && val.length >= 6;
             },
             message : "Password is too short!"
         }
@@ -35,9 +36,6 @@ const userSchema = mongoose.Schema({
     type: {
         type: String,
         default: 'user',
-    },
-    avatar:{
-        type: Buffer,
     }
 });
 

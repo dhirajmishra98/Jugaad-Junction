@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/constants/global_variables.dart';
 import 'package:remixicon/remixicon.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -6,10 +7,12 @@ class CustomTextField extends StatefulWidget {
       {required this.controller,
       required this.labelText,
       this.isPasswordField = false,
+      this.maxLines = 1,
       super.key});
   final TextEditingController controller;
   final String labelText;
   final bool isPasswordField;
+  final int maxLines;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -29,6 +32,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.isPasswordField ? isVisible : false,
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
           suffixIcon: widget.isPasswordField
               ? IconButton(
@@ -39,17 +43,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 )
               : null,
           border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(color: GlobalVariables.secondaryColor),
           ),
           enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(color: GlobalVariables.secondaryColor),
           ),
           focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: BorderSide(color: GlobalVariables.secondaryColor),
           ),
           labelText: widget.labelText,
           labelStyle: const TextStyle(
-            color: Colors.grey,
+            color: GlobalVariables.secondaryColor,
           )),
       validator: (value) {
         if (value == null || value.isEmpty) {

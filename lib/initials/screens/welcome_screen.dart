@@ -43,18 +43,24 @@ class WelcomeScreen extends StatelessWidget {
                 height: size.height * 0.05,
               ),
               CustomButton(
-                  text: 'Already a customer? Sign in',
-                  onTap: () => Navigator.pushNamed(
-                      context, AuthScreen.routeName,
-                      arguments: {"signInRoute": true})),
+                text: 'Already a customer? Sign in',
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  AuthScreen.routeName,
+                  arguments: {"signInRoute": true},
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),
               CustomButton(
-                  text: 'New to Jugaad-Junction? Sign up',
-                  onTap: () => Navigator.pushNamed(
-                      context, AuthScreen.routeName,
-                      arguments: {"signInRoute": false})),
+                text: 'New to Jugaad-Junction? Sign up',
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  AuthScreen.routeName,
+                  arguments: {"signInRoute": false},
+                ),
+              ),
             ],
           ),
         ),

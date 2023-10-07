@@ -3,9 +3,7 @@ const express = require('express');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const authMiddleware = require('../middlewares/auth');
-const multer = require('multer')
-const sharp = require('sharp')
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const authRouter = express.Router(); //express() is initialization which we have to listen on port which is done in index.js file. Router() is used to create differentiable routes
 
@@ -25,7 +23,7 @@ authRouter.post('/api/signup', async (req, res) => {
 
         const encryptedPassword =await bcryptjs.hash(password,8); //8 is salt added to hashing to encrypt, (not a length)
 
-        let user = new User({ name, email, password:encryptedPassword, avatar:''});
+        let user = new User({ name, email, password:encryptedPassword});
         user = await user.save();
         res.json(user);
     } catch (e) {
@@ -57,7 +55,6 @@ authRouter.post('/api/signin', async (req, res)=>{
 
         //what to send : token will be stored in memory of user, and user is needed to send to show homepage and all other related stuffs
         res.json({token, ...user._doc}); //...user is object destructuring ._doc give exact info of user : check diffrence in postman user has so much unneccessary infor while user._doc has needed info
-        console.log(user);
     } catch(e){
         res.status(500).json({error: e.message});
     }
@@ -93,48 +90,5 @@ authRouter.get('/', authMiddleware, async (req,res)=>{
         res.status(500).json({error: e.message});
     }
 });
-
-//configuring multer for user avatar upload
-const storage = multer.diskStorage({
-    destination: (req, file, cb)=>{
-        cb(null, 'uploads/')
-    },
-    filename: (req, file, cb)=>{
-        cb(null, file.fieldname+'-'+Date.now())
-    }
-});
-
-var upload = multer({
-    storage: storage, 
-    fileFilter(req, file, cb){
-    if(!file.originalname.match(/\.(jpg|jpeg|png)$/)){
-        return cb(new Error('please upload image'));
-    }
-    cb(undefined, true);
-} });
-
-authRouter.post('/api/users/avatar', authMiddleware, upload.single('avatar'), async (req, res)=>{
-    const buffer = await sharp(req.file.buffer).resize({height: 250, width:250}).png().toBuffer();
-    req.user.avatar = buffer;
-    await req.user.save();
-    res.status(200).send({msg: "Avatar upload success"});
-    console.log(res.body);
-}, (error, req, res, next)=>{
-    res.status(400).send({error: error.message});
-});
-
-authRouter.get('/users/:id/avatar', async (req, res)=>{
-    try{
-        const user = await User.findById(req.params.id);
-
-        if(!user || !user.avatar){
-            throw new Error("No avatar found!");
-        }
-        res.set('Content-Type','image/png');
-        res.send(user.avatar);
-    }catch(e){
-        res.status(404).send({error: e.message});
-    }
-})
 
 module.exports = authRouter;

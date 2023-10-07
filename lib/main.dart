@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/features/admin/screens/admin_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import 'package:jugaad_junction/features/admin/widgets/admin_bottom_nav_bar.dart';
+import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
+import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:jugaad_junction/router.dart';
-import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
-import 'package:jugaad_junction/initials/widgets/bottom_nav_bar.dart';
-import 'package:provider/provider.dart';
 
 import 'constants/global_variables.dart';
 import 'features/auth/services/auth_service.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: ".env.apikeys");
   runApp(
     MultiProvider(
       providers: [
@@ -60,8 +63,8 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
           ? Provider.of<UserProvider>(context).user.type == 'admin'
-              ? const AdminScreen()
-              : const BottomNavBar()
+              ? const AdminBottomNavBar()
+              : const UserBottomNavBar()
           : const WelcomeScreen(),
     );
   }

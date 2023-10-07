@@ -6,7 +6,6 @@ import 'package:jugaad_junction/features/home/widgets/deal_of_day.dart';
 import 'package:jugaad_junction/features/home/widgets/top_categories.dart';
 import 'package:lottie/lottie.dart';
 
-
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home-screen';
   const HomeScreen({super.key});
@@ -80,10 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               AddressBox(),
+              CarouselCategories(),
               TopCategories(),
               SizedBox(height: 10),
-              CarouselCategories(),
               DealOfDay(),
+              // AllProducts(),
             ],
           ),
         ));
