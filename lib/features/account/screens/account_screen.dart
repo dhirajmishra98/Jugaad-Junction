@@ -1,12 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/constants/utils.dart';
 import 'package:jugaad_junction/features/account/widgets/my_orders.dart';
 import 'package:jugaad_junction/features/account/widgets/top_buttons.dart';
+import 'package:jugaad_junction/features/auth/services/auth_service.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -16,6 +18,16 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  final AuthService _authService = AuthService();
+  File? profilePic;
+
+  void uploadAvatar() async {
+    profilePic = await pickImageFromGallery(context);
+    if (profilePic != null) {
+      _authService.uploadAvatar(profilePic!, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context).user;
@@ -43,15 +55,27 @@ class _AccountScreenState extends State<AccountScreen> {
                                   const TextStyle(fontWeight: FontWeight.bold))
                         ]),
                   ),
-                  CircleAvatar(
-                    backgroundImage: const AssetImage(
-                      'assets/images/upload_avatar.png',
-                    ),
-                    radius: 40,
-                    onBackgroundImageError: (exception, stackTrace) =>
-                        const AssetImage(
-                      'assets/images/upload_avatar.png',
-                    ),
+                  InkWell(
+                    onTap: uploadAvatar,
+                    child: user.avatar == null
+                        ? CircleAvatar(
+                            backgroundImage: const AssetImage(
+                              'assets/images/upload_avatar.png',
+                            ),
+                            radius: 40,
+                            onBackgroundImageError: (exception, stackTrace) =>
+                                const AssetImage(
+                              'assets/images/upload_avatar.png',
+                            ),
+                          )
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(user.avatar!),
+                            radius: 40,
+                            onBackgroundImageError: (exception, stackTrace) =>
+                                const AssetImage(
+                              'assets/images/upload_avatar.png',
+                            ),
+                          ),
                   )
                 ],
               ),

@@ -9,6 +9,7 @@ class User {
   final String address;
   final String type;
   final String token;
+  final String? avatar;
   User({
     required this.id,
     required this.name,
@@ -17,6 +18,7 @@ class User {
     required this.address,
     required this.type,
     required this.token,
+    this.avatar,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +30,7 @@ class User {
       'address': address,
       'type': type,
       'token': token,
+      'avatar': avatar,
     };
   }
 
@@ -40,10 +43,12 @@ class User {
       address: map['address'] as String,
       type: map['type'] as String,
       token: map['token'] as String,
+      avatar: map['avatar'] != null ? map['avatar'] as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) =>
+      User.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -91,4 +91,16 @@ authRouter.get('/', authMiddleware, async (req,res)=>{
     }
 });
 
+//Uploading user avatar
+authRouter.post('/api/user-avatar', authMiddleware, async (req, res) =>{
+    try{
+        let user = await User.findById(req.userId);
+        user.avatar = req.body.avatar;
+        await user.save();
+        res.status(200).json({msg: "User Avatar Uploaded!"});
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+})
+
 module.exports = authRouter;

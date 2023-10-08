@@ -1,7 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'dart:io';
+import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +74,6 @@ class AuthService {
         },
       );
 
-
       httpErrorHandle(
         response: res,
         context: context,
@@ -124,6 +126,39 @@ class AuthService {
       }
     } catch (error) {
       showSnackBar(context, error.toString());
+    }
+  }
+
+  void uploadAvatar(File profilePic, BuildContext context) async {
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      dynamic cloudinary = CloudinaryPublic(
+        dotenv.env['_cloudName']!,
+        dotenv.env['_uploadPreset']!,
+        cache: true,
+      );
+      CloudinaryResponse res = await cloudinary.uploadFile(
+        CloudinaryFile.fromFile(
+          profilePic.path,
+          folder: "Avatars",
+          resourceType: CloudinaryResourceType.Image,
+        ),
+      );
+
+      await http.post(
+        Uri.parse('$uriFromGlobalVar/api/user-avatar'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'avatar': res.secureUrl,
+        }),
+      );
+
+      getUserData(context);
+    } catch (e) {
+      showSnackBar(context, "Uploading Avatar Failed!");
     }
   }
 }

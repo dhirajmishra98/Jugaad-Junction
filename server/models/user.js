@@ -36,7 +36,10 @@ const userSchema = mongoose.Schema({
     type: {
         type: String,
         default: 'user',
-    }
+    },
+    avatar:{
+        type: String,
+    },
 });
 
 const User = mongoose.model('User', userSchema);
