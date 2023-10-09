@@ -5,9 +5,9 @@ import 'dart:io';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/error_handling.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
-import 'package:jugaad_junction/constants/utils.dart';
+import 'package:jugaad_junction/common/widgets/error_handling.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
+import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/models/product.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +28,8 @@ class AdminService {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       dynamic cloudinary = CloudinaryPublic(
-        dotenv.env['_cloudName']!,
-        dotenv.env['_uploadPreset']!,
+        dotenv.env['cloudName']!,
+        dotenv.env['uploadPreset']!,
         cache: true,
       );
       List<String> productImageUrls = [];
@@ -38,7 +38,7 @@ class AdminService {
         CloudinaryResponse res = await cloudinary.uploadFile(
           CloudinaryFile.fromFile(
             productImages[i].path,
-            folder: productName,
+            folder: productName.trim(),
             resourceType: CloudinaryResourceType.Image,
           ),
         );

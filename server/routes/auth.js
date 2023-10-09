@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const authMiddleware = require('../middlewares/authMiddleware');
+const User = require('../models/user_model');
+const authMiddleware = require('../middlewares/auth_middleware');
 
 const authRouter = express.Router(); //express() is initialization which we have to listen on port which is done in index.js file. Router() is used to create differentiable routes
 
@@ -101,6 +101,6 @@ authRouter.post('/api/user-avatar', authMiddleware, async (req, res) =>{
     } catch(e){
         res.status(500).json({error: e.message});
     }
-})
+});
 
 module.exports = authRouter;

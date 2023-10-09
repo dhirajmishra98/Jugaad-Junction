@@ -3,7 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/utils.dart';
+import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/features/account/widgets/my_orders.dart';
 import 'package:jugaad_junction/features/account/widgets/top_buttons.dart';
 import 'package:jugaad_junction/features/auth/services/auth_service.dart';

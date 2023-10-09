@@ -10,9 +10,9 @@ import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constants/error_handling.dart';
-import '../../../constants/global_variables.dart';
-import '../../../constants/utils.dart';
+import '../../../common/widgets/error_handling.dart';
+import '../../../common/global_variables.dart';
+import '../../../common/utils.dart';
 import '../../../models/user.dart';
 import '../../../providers/user_provider.dart';
 

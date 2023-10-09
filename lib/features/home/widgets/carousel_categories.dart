@@ -1,7 +1,7 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
 
 class CarouselCategories extends StatefulWidget {
   const CarouselCategories({super.key});

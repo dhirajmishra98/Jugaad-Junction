@@ -40,6 +40,7 @@ const userSchema = mongoose.Schema({
     avatar:{
         type: String,
     },
+    
 });
 
 const User = mongoose.model('User', userSchema);

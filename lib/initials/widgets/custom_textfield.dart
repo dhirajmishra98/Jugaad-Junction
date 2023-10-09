@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:remixicon/remixicon.dart';
 
 class CustomTextField extends StatefulWidget {

@@ -8,7 +8,7 @@ import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:jugaad_junction/router.dart';
 
-import 'constants/global_variables.dart';
+import 'common/global_variables.dart';
 import 'features/auth/services/auth_service.dart';
 
 Future<void> main() async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
-import 'package:jugaad_junction/constants/loader.dart';
-import 'package:jugaad_junction/constants/utils.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
+import 'package:jugaad_junction/common/widgets/loader.dart';
+import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/features/admin/screens/add_product_screen.dart';
 import 'package:jugaad_junction/features/admin/services/admin_service.dart';
 import 'package:jugaad_junction/models/product.dart';

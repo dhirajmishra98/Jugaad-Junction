@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
+import 'package:jugaad_junction/features/home/screens/product_category_screen.dart';
 
 class TopCategories extends StatefulWidget {
   const TopCategories({super.key});
@@ -9,6 +10,14 @@ class TopCategories extends StatefulWidget {
 }
 
 class _TopCategoriesState extends State<TopCategories> {
+  void navigateToProductCategoryScreen(int index) {
+    Navigator.pushNamed(
+      context,
+      ProductCategoryScreen.routeName,
+      arguments: GlobalVariables.topCategories[index]['title']!,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
@@ -49,7 +58,7 @@ class _TopCategoriesState extends State<TopCategories> {
                   child: Column(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () => navigateToProductCategoryScreen(index),
                         child: CircleAvatar(
                           backgroundImage: AssetImage(
                               GlobalVariables.topCategories[index]['image']!),

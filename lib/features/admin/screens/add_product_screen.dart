@@ -5,12 +5,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
-import 'package:jugaad_junction/constants/utils.dart';
+import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/features/admin/services/admin_service.dart';
 import 'package:jugaad_junction/initials/widgets/custom_button.dart';
 import 'package:jugaad_junction/initials/widgets/custom_textfield.dart';
 
-import '../../../constants/global_variables.dart';
+import '../../../common/global_variables.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});

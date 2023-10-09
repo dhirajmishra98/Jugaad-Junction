@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../constants/global_variables.dart';
+import '../../../common/global_variables.dart';
 import '../../../initials/widgets/custom_button.dart';
 import '../../../initials/widgets/custom_textfield.dart';
 import '../services/auth_service.dart';

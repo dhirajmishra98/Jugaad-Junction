@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:text_scroll/text_scroll.dart';

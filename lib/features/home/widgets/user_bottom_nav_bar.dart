@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:jugaad_junction/features/account/screens/account_screen.dart';
 import 'package:jugaad_junction/features/home/screens/home_screen.dart';
 

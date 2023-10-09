@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/constants/global_variables.dart';
+import 'package:jugaad_junction/common/global_variables.dart';
 
 class DealOfDay extends StatefulWidget {
   const DealOfDay({super.key});
