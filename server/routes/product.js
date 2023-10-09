@@ -58,4 +58,27 @@ productRouter.post('/api/product/rating', authMiddleware, async (req, res)=>{
     }
 });
 
+productRouter.get('/api/deal-of-day', authMiddleware, async (req, res)=>{
+    try{
+        let products = await Product.find({});
+        
+        products = products.sort( (productA, productB)=>{
+            let aSum = 0, bSum = 0;
+            for(let i=0;i<productA.ratings.length;i++){
+                aSum += productA.ratings[i].rating;
+            }
+
+            for(let i=0;i<productB.ratings.length;i++){
+                bSum += productB.ratings[i].rating;
+            }
+
+            return bSum-aSum; //descending order
+        })
+
+        res.status(200).json(products[0]);
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+});
+
 module.exports = productRouter;

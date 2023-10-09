@@ -36,4 +36,35 @@ class ProductServices {
       showSnackBar(context, "Failed to Rate, $e");
     }
   }
+
+  Future<Product> getDealOfDay(BuildContext context) async {
+    Product product = Product(
+        name: "",
+        description: "",
+        category: "",
+        price: 0,
+        quantity: 0,
+        images: []);
+
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response response = await http.get(
+        Uri.parse('$uriFromGlobalVar/api/deal-of-day'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
+
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            product = Product.fromJson(response.body);
+          });
+    } catch (e) {
+      showSnackBar(context, "Deal of Day Error Loading $e");
+    }
+    return product;
+  }
 }
