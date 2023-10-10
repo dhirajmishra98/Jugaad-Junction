@@ -58,6 +58,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         context: context, product: widget.product, rating: rating);
   }
 
+  void addToCart() async {
+    _productServices.addToCart(context: context, product: widget.product);
+  }
+
   @override
   void dispose() {
     _searchProductController.dispose();
@@ -222,7 +226,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(10),
-              child: CustomButton(text: 'Add to Cart', onTap: () {}),
+              child: CustomButton(
+                text: 'Add to Cart',
+                onTap: addToCart,
+              ),
             ),
             const SizedBox(height: 10),
             Container(

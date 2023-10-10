@@ -11,7 +11,66 @@ import 'package:http/http.dart' as http;
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/user.dart';
+
 class ProductServices {
+  void addToCart({
+    required BuildContext context,
+    required Product product,
+  }) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response response = await http.post(
+        Uri.parse('$uriFromGlobalVar/api/add-to-cart'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+        body: jsonEncode({
+          'productId': product.id,
+        }),
+      );
+
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            User user = userProvider.user
+                .copyWith(cart: jsonDecode(response.body)['cart']);
+            userProvider.setUserFromModel(user);
+            showSnackBar(context, "Product added to cart!");
+          });
+    } catch (e) {
+      showSnackBar(context, "Proudct Add to Cart Failed $e");
+    }
+  }
+
+  void removeFromCart(
+      {required BuildContext context, required Product product}) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    try {
+      http.Response response = await http.delete(
+        Uri.parse('$uriFromGlobalVar/api/remove-from-cart/${product.id}'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
+
+      httpErrorHandle(
+          response: response,
+          context: context,
+          onSuccess: () {
+            User user = userProvider.user
+                .copyWith(cart: jsonDecode(response.body)['cart']);
+            userProvider.setUserFromModel(user);
+            showSnackBar(context, "Product removed from cart!");
+          });
+    } catch (e) {
+      showSnackBar(context, "Product Remove Failed $e");
+    }
+  }
+
   void rateProduct({
     required BuildContext context,
     required Product product,
