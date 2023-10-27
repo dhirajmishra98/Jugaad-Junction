@@ -1,7 +1,8 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/auth_middleware');
-const { Product } = require('../models/product_model');
+const { Product, productSchema } = require('../models/product_model');
 const User = require('../models/user_model');
+const Order = require('../models/order_model');
 
 const userRouter = express.Router();
 
@@ -61,6 +62,61 @@ userRouter.delete('/api/remove-from-cart/:productId', authMiddleware, async(req,
         
         user = await user.save();
         res.status(200).json(user);
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+});
+
+userRouter.post('/api/save-user-address', authMiddleware, async(req, res)=>{
+    try{
+        const {userAddress} = req.body;
+        let user = await User.findById(req.userId);
+        user.address = userAddress;
+        user = await user.save();
+        res.status(200).json(user);
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+});
+
+userRouter.post('/api/order', authMiddleware, async (req, res)=>{
+    try{
+        const {cart, totalPrice, address} = req.body;
+        let products = [];
+        for(let i=0;i<cart.length;i++){
+            let product = await Product.findById(cart[i].product._id);
+            if(product.quantity >= cart[i].quantity){
+                product.quantity -= cart[i].quantity;
+                products.push({product, quantity: cart[i].quantity});
+                await product.save();
+            }else{
+                return res.status(400).json({error: `${product.name} is out of stock`});
+            }
+        }
+
+        let user = await User.findById(req.userId);
+        user.cart = [];
+        user = await user.save();
+
+        let order = new Order({
+            products,
+            totalPrice,
+            address,
+            userId: req.userId,
+            orderedAt: new Date().getTime(),
+        });
+
+        order = await order.save();
+        res.status(200).json(order);
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+});
+
+userRouter.get('/api/orders/me', authMiddleware, async(req, res)=>{
+    try{
+        const orders = await Order.find({userId: req.userId});
+        res.status(200).json(orders);
     } catch(e){
         res.status(500).json({error: e.message});
     }

@@ -23,7 +23,7 @@ class AddressBox extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             width: size.width * 0.8,
             child: TextScroll(
-              'Delivery to ${user.name} - ${user.address}. Happy Shopping!😝          THis is tseti tex t of sjfls ajfslf        fjdkaf ',
+              'Delivery to ${user.name} - ${user.address}. Happy Shopping!😝         ',
               mode: TextScrollMode.endless,
               velocity: const Velocity(pixelsPerSecond: Offset(25, 0)),
               delayBefore: const Duration(milliseconds: 100),

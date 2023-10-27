@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jugaad_junction/common/global_variables.dart';
+import 'package:jugaad_junction/features/address/screens/address_screen.dart';
 import 'package:jugaad_junction/features/cart/widgets/cart_product.dart';
 import 'package:jugaad_junction/features/cart/widgets/subtotal.dart';
 import 'package:jugaad_junction/features/home/widgets/address_box.dart';
@@ -15,9 +16,16 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  void navigateToAddressScreen(String totalSum) {
+    Navigator.pushNamed(context, AddressScreen.routeName, arguments: totalSum);
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>().user;
+    double sum = 0;
+    user.cart.map((e) => sum += e['quantity'] * e['product']['price']).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cart'),
@@ -27,13 +35,13 @@ class _CartScreenState extends State<CartScreen> {
       body: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(child: AddressBox()),
-          const SliverToBoxAdapter(child: Subtotal()),
+          SliverToBoxAdapter(child: Subtotal(sum: sum.toString(),)),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: CustomButton(
                 text: "Proceed to Buy (${user.cart.length} Item)",
-                onTap: () {},
+                onTap:()=> navigateToAddressScreen(sum.toString()),
               ),
             ),
           ),

@@ -29,7 +29,7 @@ class _MyOrdersState extends State<MyOrders> {
             ),
           ],
         ),
-        SingleOrder(),
+        const SingleOrder(),
       ],
     );
   }

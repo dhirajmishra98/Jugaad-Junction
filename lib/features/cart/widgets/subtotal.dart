@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jugaad_junction/providers/user_provider.dart';
-import 'package:provider/provider.dart';
-
 class Subtotal extends StatelessWidget {
-  const Subtotal({super.key});
+  final String sum;
+  const Subtotal({super.key, required this.sum});
 
   @override
   Widget build(BuildContext context) {
-    final userCart = context.watch<UserProvider>().user.cart;
-    double sum = 0;
-    userCart.map((e) => sum += e['quantity'] * e['product']['price']).toList();
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Row(

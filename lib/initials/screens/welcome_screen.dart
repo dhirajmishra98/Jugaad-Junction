@@ -13,55 +13,57 @@ class WelcomeScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: size.height * 0.05,
-              ),
-              Image.asset(
-                'assets/images/ecommerce-logo.png',
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                'Sign in to your account',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: size.height * 0.05,
                 ),
-              ),
-              Lottie.asset(
-                'assets/animations/welcome.json',
-                animate: true,
-                repeat: true,
-              ),
-              SizedBox(
-                height: size.height * 0.05,
-              ),
-              CustomButton(
-                text: 'Already a customer? Sign in',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  AuthScreen.routeName,
-                  arguments: {"signInRoute": true},
+                Image.asset(
+                  'assets/images/ecommerce-logo.png',
+                  fit: BoxFit.cover,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              CustomButton(
-                text: 'New to Jugaad-Junction? Sign up',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  AuthScreen.routeName,
-                  arguments: {"signInRoute": false},
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-            ],
+                const Text(
+                  'Sign in to your account',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+                Lottie.asset(
+                  'assets/animations/welcome.json',
+                  animate: true,
+                  repeat: true,
+                ),
+                SizedBox(
+                  height: size.height * 0.05,
+                ),
+                CustomButton(
+                  text: 'Already a customer? Sign in',
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    AuthScreen.routeName,
+                    arguments: {"signInRoute": true},
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                CustomButton(
+                  text: 'New to Jugaad-Junction? Sign up',
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    AuthScreen.routeName,
+                    arguments: {"signInRoute": false},
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

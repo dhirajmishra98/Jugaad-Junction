@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jugaad_junction/common/widgets/stars_rating.dart';
+import 'package:jugaad_junction/features/cart/screens/cart_screen.dart';
 import 'package:jugaad_junction/features/home/services/product_services.dart';
 import 'package:jugaad_junction/models/product.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
@@ -60,6 +61,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   void addToCart() async {
     _productServices.addToCart(context: context, product: widget.product);
+  }
+
+  void navigateToCartScreen() {
+    MaterialPageRoute(
+      builder: (context) => const CartScreen(),
+    );
   }
 
   @override
@@ -220,7 +227,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               padding: const EdgeInsets.all(10),
               child: CustomButton(
                 text: 'Buy Now',
-                onTap: () {},
+                onTap: navigateToCartScreen,
               ),
             ),
             const SizedBox(height: 10),

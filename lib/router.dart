@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/features/account/screens/order_details_screen.dart';
+import 'package:jugaad_junction/features/address/screens/address_screen.dart';
 import 'package:jugaad_junction/features/home/screens/product_detail_screen.dart';
 import 'package:jugaad_junction/features/admin/screens/admin_screen.dart';
 import 'package:jugaad_junction/features/admin/widgets/admin_bottom_nav_bar.dart';
@@ -6,6 +8,7 @@ import 'package:jugaad_junction/features/home/screens/home_screen.dart';
 import 'package:jugaad_junction/features/home/screens/product_category_screen.dart';
 import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
 import 'package:jugaad_junction/features/search/screens/search_screen.dart';
+import 'package:jugaad_junction/models/order.dart';
 
 import 'features/auth/screens/auth_screen.dart';
 import 'models/product.dart';
@@ -56,6 +59,20 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       Product product = routeSettings.arguments as Product;
       return MaterialPageRoute(
         builder: (context) => ProductDetailScreen(product: product),
+      );
+
+    case AddressScreen.routeName:
+      String totalSum = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        builder: (context) => AddressScreen(totalsum: totalSum),
+      );
+
+    case OrderDetailsScreen.routeName:
+      Order order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+        builder: (context) => OrderDetailsScreen(
+          order: order,
+        ),
       );
 
     default:
