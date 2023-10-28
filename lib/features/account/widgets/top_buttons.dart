@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jugaad_junction/features/account/services/account_service.dart';
 import 'package:jugaad_junction/features/account/widgets/account_button.dart';
 
 class TopButton extends StatelessWidget {
@@ -20,7 +21,9 @@ class TopButton extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AccountButton(onTap: () {}, text: "Log Out"),
+              AccountButton(
+                  onTap: () => AccountService().logOut(context),
+                  text: "Log Out"),
               AccountButton(onTap: () {}, text: "Your Wishlist")
             ],
           )

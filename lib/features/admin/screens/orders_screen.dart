@@ -61,8 +61,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
                             ),
                             child: SizedBox(
                               height: 150,
-                              child: SingleProduct(
-                                image: orderData.products[0].images[0],
+                              width: 100,
+                              child: Column(
+                                children: [
+                                  SingleProduct(
+                                    image: orderData.products[0].images[0],
+                                  ),
+                                  Text(" Order Status : ${orderData.status}"),
+                                ],
                               ),
                             ),
                           );

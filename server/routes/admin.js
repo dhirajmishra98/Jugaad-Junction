@@ -68,4 +68,59 @@ adminRouter.post('/admin/change-order-status', adminMiddleware, async (req, res)
     }
 });
 
+adminRouter.get('/admin/analytics', adminMiddleware, async (req, res)=>{
+    try{
+        let totalEarnings = 0;
+        let orders = await Order.find({});
+
+        for(let i=0;i<orders.length;i++){
+            for(let j=0;j<orders[i].products.length; j++){
+                totalEarnings += (orders[i].products[j].quantity * orders[i].products[j].product.price);
+            }
+        }
+
+        //Category wise order fetching
+        let mobilesEarning = await fetchProductCategoryWise('Mobile');
+        let appliancesEarning = await fetchProductCategoryWise('Appliances');
+        let booksEarning = await fetchProductCategoryWise('Books');
+        let essentailsEarning = await fetchProductCategoryWise('Essentials');
+        let fashionEarnings = await fetchProductCategoryWise('Fashion');
+        let furnitureEarnings = await fetchProductCategoryWise('Furniture');
+        let headphonesEarnings = await fetchProductCategoryWise('Headphones');
+        let sportsEarnings = await fetchProductCategoryWise('Sports');
+        
+        let earnings = {
+            totalEarnings,
+            mobilesEarning,
+            appliancesEarning,
+            booksEarning,
+            essentailsEarning,
+            fashionEarnings,
+            furnitureEarnings,
+            headphonesEarnings,
+            sportsEarnings,
+        }
+
+        res.status(200).json(earnings);
+    } catch(e) {
+        res.status(500).json({error: e.message});
+    }
+});
+
+const fetchProductCategoryWise = async (category) =>{
+    let categoryOrder = await Order.find({
+        'products.product.category': category,
+    });
+
+    let earnings = 0;
+    for(let i=0;i<categoryOrder.length;i++){
+        for(let j=0;j<categoryOrder[i].products.length; j++){
+            earnings += (categoryOrder[i].products[j].quantity * categoryOrder[i].products[j].product.price);
+        }
+    }
+
+    return earnings;
+};
+
+
 module.exports = adminRouter;

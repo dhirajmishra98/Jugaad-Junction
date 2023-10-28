@@ -10,6 +10,7 @@ import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/models/order.dart';
 import 'package:jugaad_junction/models/product.dart';
+import 'package:jugaad_junction/models/sales.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -199,5 +200,47 @@ class AdminService {
     } catch (e) {
       showSnackBar(context, e.toString());
     }
+  }
+
+  Future<Map<String, dynamic>> getAnalytics(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Sales> sales = [];
+    int totalEarnings = 0;
+    try {
+      http.Response response = await http.get(
+        Uri.parse('$uriFromGlobalVar/admin/analytics'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': userProvider.user.token,
+        },
+      );
+
+      httpErrorHandle(
+        response: response,
+        context: context,
+        onSuccess: () {
+          var res = jsonDecode(response.body);
+          totalEarnings = res['totalEarnings'];
+          sales = [
+            Sales(label: 'Mobile', totalEarnings: res['mobilesEarning']),
+            Sales(label: 'Appliances', totalEarnings: res['appliancesEarning']),
+            Sales(label: 'Books', totalEarnings: res['booksEarning']),
+            Sales(label: 'Essentials', totalEarnings: res['essentailsEarning']),
+            Sales(label: 'Fashion', totalEarnings: res['fashionEarnings']),
+            Sales(label: 'Furniture', totalEarnings: res['furnitureEarnings']),
+            Sales(
+                label: 'Headphones', totalEarnings: res['headphonesEarnings']),
+            Sales(label: 'Sports', totalEarnings: res['sportsEarnings']),
+          ];
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+
+    return {
+      'sales': sales,
+      'totalEarnings': totalEarnings,
+    };
   }
 }

@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:jugaad_junction/features/admin/screens/admin_screen.dart';
+import 'package:jugaad_junction/features/admin/screens/analytics_screen.dart';
 import 'package:jugaad_junction/features/admin/screens/orders_screen.dart';
 
 class AdminBottomNavBar extends StatefulWidget {
@@ -17,7 +18,7 @@ class _BottomNavBarState extends State<AdminBottomNavBar> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   List<Widget> pages = [
     const AdminScreen(),
-    const Text('Analytics Page'),
+    const AnalyticsScreen(),
     const OrdersScreen(),
   ];
 
