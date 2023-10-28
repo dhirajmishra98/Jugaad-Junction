@@ -30,7 +30,8 @@ class AddressService {
         }),
       );
 
-      httpErrorHandle(
+      if(response.statusCode == 200) {
+        httpErrorHandle(
           response: response,
           context: context,
           onSuccess: () {
@@ -39,6 +40,9 @@ class AddressService {
             );
             userProvider.setUserFromModel(user);
           });
+      }else{
+        showSnackBar(context, jsonDecode(response.body)['error']);
+      }
     } catch (e) {
       showSnackBar(context, "User Address Save Failed $e");
     }
@@ -64,18 +68,23 @@ class AddressService {
         }),
       );
 
-      httpErrorHandle(
-          response: response,
-          context: context,
-          onSuccess: () {
-            showSnackBar(context, "Your order has been placed");
-            User user = userProvider.user.copyWith(
-              cart: [],
-            );
-            userProvider.setUserFromModel(user);
-          });
+      if (response.statusCode == 200) {
+        httpErrorHandle(
+            response: response,
+            context: context,
+            onSuccess: () {
+              showSnackBar(context, "Your order has been placed");
+              User user = userProvider.user.copyWith(
+                cart: [],
+              );
+              userProvider.setUserFromModel(user);
+            });
+      } else {
+        showSnackBar(context, jsonDecode(response.body)['error']);
+      }
     } catch (e) {
-      showSnackBar(context, "User Address Save Failed $e");
+      //Handling other network errors
+      showSnackBar(context, "Place Order Failed $e");
     }
   }
 }
