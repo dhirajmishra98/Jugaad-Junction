@@ -68,6 +68,7 @@ adminRouter.post('/admin/change-order-status', adminMiddleware, async (req, res)
     }
 });
 
+//Order Analytics
 adminRouter.get('/admin/analytics', adminMiddleware, async (req, res)=>{
     try{
         let totalEarnings = 0;

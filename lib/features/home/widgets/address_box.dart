@@ -22,23 +22,25 @@ class AddressBox extends StatelessWidget {
           Container(
             margin: const EdgeInsets.all(10),
             width: size.width * 0.8,
-            child: TextScroll(
-              'Delivery to ${user.name} - ${user.address}. Happy Shopping!😝         ',
-              mode: TextScrollMode.endless,
-              velocity: const Velocity(pixelsPerSecond: Offset(25, 0)),
-              delayBefore: const Duration(milliseconds: 100),
-              pauseBetween: const Duration(milliseconds: 50),
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-              ),
-              selectable: true,
-              fadedBorder: true,
-              fadeBorderSide: FadeBorderSide.right,
-              fadeBorderVisibility: FadeBorderVisibility.always,
-              fadedBorderWidth: 0.1,
-            ),
+            child: user.address.isEmpty
+                ? const Text("Your Address Here")
+                : TextScroll(
+                    'Delivery to ${user.name} - ${user.address}. Happy Shopping!😝         ',
+                    mode: TextScrollMode.endless,
+                    velocity: const Velocity(pixelsPerSecond: Offset(25, 0)),
+                    delayBefore: const Duration(milliseconds: 100),
+                    pauseBetween: const Duration(milliseconds: 50),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15,
+                    ),
+                    selectable: true,
+                    fadedBorder: true,
+                    fadeBorderSide: FadeBorderSide.right,
+                    fadeBorderVisibility: FadeBorderVisibility.always,
+                    fadedBorderWidth: 0.1,
+                  ),
           ),
         ],
       ),
