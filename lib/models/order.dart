@@ -11,7 +11,7 @@ class Order {
   final String userId;
   final int orderedAt;
   final int status;
-  final int totalPrice;
+  final double totalPrice;
   Order({
     required this.id,
     required this.products,
@@ -51,9 +51,9 @@ class Order {
       ),
       address: map['address'] as String,
       userId: map['userId'] as String,
-      orderedAt: map['orderedAt'] as int,
-      status: map['status'] as int,
-      totalPrice: map['totalPrice'] as int,
+      orderedAt: map['orderedAt']?.toInt() ?? 0,
+      status: map['status']?.toInt() ?? 0,
+      totalPrice: map['totalPrice']?.toDouble() ?? 0.0,
     );
   }
 

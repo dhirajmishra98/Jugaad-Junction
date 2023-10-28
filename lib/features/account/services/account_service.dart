@@ -26,20 +26,24 @@ class AccountService {
         },
       );
 
-      httpErrorHandle(
-          response: response,
-          context: context,
-          onSuccess: () {
-            for (int i = 0; i < jsonDecode(response.body).length; i++) {
-              orders.add(
-                Order.fromJson(
-                  jsonEncode(
-                    jsonDecode(response.body)[i],
+      if (response.statusCode == 200) {
+        httpErrorHandle(
+            response: response,
+            context: context,
+            onSuccess: () {
+              for (int i = 0; i < jsonDecode(response.body).length; i++) {
+                orders.add(
+                  Order.fromJson(
+                    jsonEncode(
+                      jsonDecode(response.body)[i],
+                    ),
                   ),
-                ),
-              );
-            }
-          });
+                );
+              }
+            });
+      } else {
+        showSnackBar(context, jsonDecode(response.body)['error']);
+      }
     } catch (e) {
       showSnackBar(context, "Order fetch failed $e");
     }
