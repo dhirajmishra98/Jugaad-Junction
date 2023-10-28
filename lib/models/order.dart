@@ -11,6 +11,7 @@ class Order {
   final String userId;
   final int orderedAt;
   final int status;
+  final int totalPrice;
   Order({
     required this.id,
     required this.products,
@@ -19,17 +20,19 @@ class Order {
     required this.userId,
     required this.orderedAt,
     required this.status,
+    required this.totalPrice,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
+      '_id': id,
       'products': products.map((x) => x.toMap()).toList(),
       'quantity': quantity,
       'address': address,
       'userId': userId,
       'orderedAt': orderedAt,
       'status': status,
+      'totalPrice': totalPrice,
     };
   }
 
@@ -50,6 +53,7 @@ class Order {
       userId: map['userId'] as String,
       orderedAt: map['orderedAt'] as int,
       status: map['status'] as int,
+      totalPrice: map['totalPrice'] as int,
     );
   }
 
