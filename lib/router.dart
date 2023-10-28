@@ -8,6 +8,7 @@ import 'package:jugaad_junction/features/home/screens/home_screen.dart';
 import 'package:jugaad_junction/features/home/screens/product_category_screen.dart';
 import 'package:jugaad_junction/features/home/widgets/user_bottom_nav_bar.dart';
 import 'package:jugaad_junction/features/search/screens/search_screen.dart';
+import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
 import 'package:jugaad_junction/models/order.dart';
 
 import 'features/auth/screens/auth_screen.dart';
@@ -15,6 +16,11 @@ import 'models/product.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
+    case WelcomeScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const WelcomeScreen(),
+      );
+
     case AuthScreen.routeName:
       return MaterialPageRoute(
         settings: routeSettings,

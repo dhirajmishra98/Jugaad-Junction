@@ -7,6 +7,7 @@ import 'package:jugaad_junction/common/global_variables.dart';
 import 'package:jugaad_junction/common/utils.dart';
 import 'package:jugaad_junction/common/widgets/error_handling.dart';
 import 'package:jugaad_junction/features/auth/screens/auth_screen.dart';
+import 'package:jugaad_junction/initials/screens/welcome_screen.dart';
 import 'package:jugaad_junction/models/order.dart';
 import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ class AccountService {
       await sharedPreferences.setString('x-auth-token', '');
       Navigator.pushNamedAndRemoveUntil(
         context,
-        AuthScreen.routeName,
+        WelcomeScreen.routeName,
         (route) => false,
       );
     } catch (e) {
