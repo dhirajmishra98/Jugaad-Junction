@@ -15,6 +15,9 @@ import 'package:jugaad_junction/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../initials/screens/welcome_screen.dart';
 
 class AdminService {
   //Add product
@@ -242,5 +245,21 @@ class AdminService {
       'sales': sales,
       'totalEarnings': totalEarnings,
     };
+  }
+
+//Logout Admin
+  void logOut(BuildContext context) async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      await sharedPreferences.setString('x-auth-token', '');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        WelcomeScreen.routeName,
+        (route) => false,
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 }

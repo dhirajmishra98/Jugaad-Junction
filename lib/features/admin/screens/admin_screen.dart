@@ -39,6 +39,10 @@ class _AdminScreenState extends State<AdminScreen> {
     });
   }
 
+  void logout() {
+    _adminService.logOut(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +56,14 @@ class _AdminScreenState extends State<AdminScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: logout,
+            icon: const Icon(
+              Icons.logout_outlined,
+            ),
+          ),
+        ],
         centerTitle: true,
       ),
       body: Center(
