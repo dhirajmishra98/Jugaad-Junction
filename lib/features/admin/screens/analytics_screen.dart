@@ -15,7 +15,7 @@ class AnalyticsScreen extends StatefulWidget {
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
   final AdminService _adminService = AdminService();
-  int? totalEarnings;
+  double? totalEarnings;
   List<Sales>? sales;
 
   @override
@@ -47,7 +47,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 body: Column(
                   children: [
                     Text(
-                      'Total Earnings : \$$totalEarnings',
+                      'Total Earnings : \$${totalEarnings?.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -58,6 +58,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                     ),
                     SizedBox(
                       height: 550,
+                      width: 550,
                       child: CategoryProductsChart(salesList: sales!),
                     ),
                   ],

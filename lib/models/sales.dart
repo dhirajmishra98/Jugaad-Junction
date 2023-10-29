@@ -1,6 +1,6 @@
 class Sales {
   final String label;
-  final int totalEarnings;
+  final double totalEarnings;
 
-  Sales({required this.label, required this.totalEarnings});
+  Sales(this.label, this.totalEarnings);
 }

@@ -202,10 +202,11 @@ class AdminService {
     }
   }
 
+//Get Analytics for admin
   Future<Map<String, dynamic>> getAnalytics(BuildContext context) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     List<Sales> sales = [];
-    int totalEarnings = 0;
+    double totalEarnings = 0.0;
     try {
       http.Response response = await http.get(
         Uri.parse('$uriFromGlobalVar/admin/analytics'),
@@ -222,15 +223,14 @@ class AdminService {
           var res = jsonDecode(response.body);
           totalEarnings = res['totalEarnings'];
           sales = [
-            Sales(label: 'Mobile', totalEarnings: res['mobilesEarning']),
-            Sales(label: 'Appliances', totalEarnings: res['appliancesEarning']),
-            Sales(label: 'Books', totalEarnings: res['booksEarning']),
-            Sales(label: 'Essentials', totalEarnings: res['essentailsEarning']),
-            Sales(label: 'Fashion', totalEarnings: res['fashionEarnings']),
-            Sales(label: 'Furniture', totalEarnings: res['furnitureEarnings']),
-            Sales(
-                label: 'Headphones', totalEarnings: res['headphonesEarnings']),
-            Sales(label: 'Sports', totalEarnings: res['sportsEarnings']),
+            Sales('Mobile', res['mobilesEarning'].toDouble()),
+            Sales('Appliances', res['appliancesEarning'].toDouble()),
+            Sales('Books', res['booksEarning'].toDouble()),
+            Sales('Essentials', res['essentailsEarning'].toDouble()),
+            Sales('Fashion', res['fashionEarnings'].toDouble()),
+            Sales('Furniture', res['furnitureEarnings'].toDouble()),
+            Sales('Headphones', res['headphonesEarnings'].toDouble()),
+            Sales('Sports', res['sportsEarnings'].toDouble()),
           ];
         },
       );
