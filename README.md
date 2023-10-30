@@ -1,15 +1,88 @@
-# E-Commerce App with Admin Panel
+# Jugaad Junction
 
 Welcome to our fully functional e-commerce app with an admin panel! This project leverages a variety of technologies to provide a seamless shopping experience, complete with features for both users and administrators.
 
+GitHub Repo: https://github.com/dhirajmishra98/Jugaad-Junction
+
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Demo](#demo)
+- [Technologies Used](#technolgiesused)
+- [Features](#features)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+## Installation
+To get started with Jugaad-Junction, an E-Commerce App with an Admin Panel, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dhirajmishra98/Jugaad-Junction
+
+2. Navigate to the project directory:
+   ```bash
+   cd Jugaad-Junction
+
+3. Install the necessary dependencies:
+   ```bash
+   flutter pub get
+
+4. Set up Environmental variables
+    - create **.env.apikeys**
+    - setup key-value pair that's used by dotenv package for environment variable. Below is the example
+    ```bash
+    cloudName = dxxxxd
+    uploadPreset = ixxxxe
+    hosted = hosted URL or http://ip_address:3000 
+
+5. Setup backend:
+   - read instruction from /server folder for backend setup
+
+6. Run the app on your preferred device
+   - make sure your machine and device running on the same network
+   ```bash
+   flutter run
+
+## Demo
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Technologies Used
 
-- Flutter: For building the mobile app frontend.
-- JavaScript: For scripting and interactivity on the web app.
-- Node.js: To create the server-side application.
-- MongoDB: As the database to store product and user information.
-- Express: To handle routing and server configuration.
-- Mongoose: For MongoDB object modeling and interaction.
+- Flutter
+- JavaScript
+- Node.js
+- MongoDB
+- Express
+- Mongoose
 
 ## Features
 
@@ -20,9 +93,8 @@ Our e-commerce app offers a range of features to enhance the shopping experience
 - **Product Search**: Easily find products using the search functionality.
 - **Category-based Product Fetching**: Browse and filter products by category.
 - **Product Ratings**: View and contribute product ratings and reviews.
-- **Deal of the Day**: Discover daily special deals.
+- **Deal of the Day**: Discover daily special deals based on rating.
 - **Secure Checkout**: Conveniently complete your purchases using GPay or Apple Pay.
-- **Order History**: Users can view their order history to track their purchases.
 
 ## Admin Panel
 
