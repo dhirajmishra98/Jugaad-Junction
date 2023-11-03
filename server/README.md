@@ -36,7 +36,7 @@ There are two ways to utilize this backend service<b>
 
 ## 2. You can use this independent repository in your e-commerce app backend and modify it accordingly.
 
-Follow This Repository: https://github.com/dhirajmishra98/Jugaad-Junction-Server
+Follow This Repository: https://github.com/dhirajmishra98/Ecommerce-Backend-Server.git
 
 
 
