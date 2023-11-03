@@ -11,12 +11,13 @@ GitHub Repo: https://github.com/dhirajmishra98/Jugaad-Junction
 
 - [Installation](#installation)
 - [Demo](#demo)
-- [Technologies Used](#technolgy)
+- [Technologies](#technologies)  
 - [Features](#features)
-- [Admin Panel](#adminpanel)
+- [Admin](#admin)  
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [Support](#support)
+
 
 
 ## Installation
@@ -56,7 +57,7 @@ To get started with Jugaad-Junction, an E-Commerce App with an Admin Panel, foll
 
 https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/4cad3b95-1a78-467f-872a-e24280152f83 
 
-## Technologies Used
+## Technologies
 - Flutter
 - JavaScript
 - Node.js
@@ -75,7 +76,7 @@ Our e-commerce app offers a range of features to enhance the shopping experience
 - **Deal of the Day**: Discover daily special deals based on rating.
 - **Secure Checkout**: Conveniently complete your purchases using GPay or Apple Pay.
 
-## Admin Panel
+## Admin 
 In addition to the features for users, our app comes with a powerful admin panel that allows administrators to manage the platform effectively. Some key functionalities of the admin panel include:
 
 - **Product Management**: Add or delete products.
