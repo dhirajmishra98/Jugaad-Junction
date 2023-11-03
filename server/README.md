@@ -3,6 +3,9 @@
 *This backend is also hosted on render.* <b>
 There are two ways to utilize this backend service<b>
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 **Prerequisites**
 - Node.js
 - MongoDB
