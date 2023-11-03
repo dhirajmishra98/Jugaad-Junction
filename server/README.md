@@ -1,2 +1,5 @@
-# Jugaad-Junction-Server
-This is server for jugaad junction hosted on render
+# Ecommerce Backend Server (Jugaad-Junction Server)
+
+*This backend is also hosted on render.*
+
+
