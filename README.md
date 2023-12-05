@@ -15,6 +15,7 @@ GitHub Repo: https://github.com/dhirajmishra98/Jugaad-Junction
 - [Features](#features)
 - [Admin](#admin)  
 - [Usage](#usage)
+- [Diagrams](#diagrams)
 - [Contributing](#contributing)
 - [Support](#support)
 
@@ -118,6 +119,11 @@ In addition to the features for users, our app comes with a powerful admin panel
 
 3. **Order Management:**
    - Monitor and manage user orders, including order status updates.
+
+## Diagrams
+Frontend (MVVM Architecture) <br>
+
+
 
 
 ## Contributing
