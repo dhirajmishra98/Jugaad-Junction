@@ -2,7 +2,10 @@
 
 Welcome to our fully functional e-commerce app with an admin panel! This project leverages a variety of technologies to provide a seamless shopping experience, complete with features for both users and administrators.
 
-GitHub Repo: https://github.com/dhirajmishra98/Jugaad-Junction
+GitHub Repo: https://github.com/dhirajmishra98/Jugaad-Junction <br>
+PPT: [View Project Presentation in Canva](https://www.canva.com/design/DAF2EiD1UPs/HlCDta-ckT0jMCBSx3QAGw/edit?utm_content=DAF2EiD1UPs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) <br>
+Report: [Jugaad Junction Report](https://github.com/dhirajmishra98/Jugaad-Junction/files/13554296/Jugaad.Junction.Report.pdf)
+
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -121,10 +124,20 @@ In addition to the features for users, our app comes with a powerful admin panel
    - Monitor and manage user orders, including order status updates.
 
 ## Diagrams
-Frontend (MVVM Architecture) <br>
-
-
-
+<p float="left">
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/e7eda3ae-9510-49ef-83c4-83ac1d49a5cd" width="300" /> 
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/c53f4ba3-747a-4b6f-ad78-3b218f2a7389" width="300" />
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/ab99ef12-b69a-4b42-a2e4-17a4a66644f0" width="300" />
+</p>
+<p float="left">
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/100fd932-096b-4283-88c6-f4bd81193c7d" width="300" /> 
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/7c99319d-93fe-4625-81d2-be2fd4742c5f" width="300" />
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/199f5df8-db0c-4054-9ca8-9ca5376ea5ec" width="300" />
+</p>
+<p float="left">
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/f614b9b7-d47b-4a1a-a398-06acfdc8536c" width="300" /> 
+  <img src="https://github.com/dhirajmishra98/Jugaad-Junction/assets/95682044/6f29d2fb-8ba8-4000-9c10-9bcbdf902669" width="300" />
+</p>
 
 ## Contributing
 We welcome contributions from the open-source community. If you'd like to contribute, please follow these instructions:
